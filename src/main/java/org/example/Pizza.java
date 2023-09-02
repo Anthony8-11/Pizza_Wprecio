@@ -6,46 +6,45 @@ import java.util.List;
 public class Pizza {
 
     private String nombre;
-    private double precio;
-    private List<String> ingredientes;
-    private List<String> toppings;
-    public Pizza(String nombre, double precio, List<String> ingredientes) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.ingredientes = ingredientes;
-        this.toppings = new ArrayList<>();
+    private List<Topping> toppings;
 
+    public Pizza(String nombre) {
+        this.nombre = nombre;
+        this.toppings = new ArrayList<>();
     }
 
     public void agregarTopping(Topping topping) {
-        toppings.add(topping.getNombre());
+        toppings.add(topping);
     }
 
-    public void preparacion() {
-
-        System.out.println("Pizza "+nombre+ " esta lista para ser servida!");
+    public double calcularPrecio() {
+        double precioTotal = 0.0;
+        for (Topping topping : toppings) {
+            precioTotal += topping.getPrecio();
+        }
+        return precioTotal;
     }
 
+    public void preparar() {
+        System.out.println("Preparando la pizza " + nombre + "...");
+        System.out.println("Agregando chunches...");
+        for (Topping topping : toppings) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Agregando " +topping.getNombre()+"...");
+        }
+    }
+    @Override
     public String toString(){
-        return "\nNombre:"+getnombre()+"\nPrecio:"+getprecio()+"\nIngredientes:"+ingredientes+"\nToppings:"+toppings;
+        return "\nNombre:"+getnombre()+"\nPrecio a pagar: " + calcularPrecio() +"\nToppings:"+toppings;
     }
 
     public String getnombre() {
         return nombre;
     }
-
-    public void setnombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getprecio() {
-        return precio;
-    }
-
-    public void setprecio(double precio) {
-        this.precio = precio;
-    }
-
-
-
 }

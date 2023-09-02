@@ -5,18 +5,23 @@ public class Main {
     public static void main (String[] args){
 
 
-        Topping quesoTopping = new Topping("Queso");
-        Topping champinonesTopping = new Topping("Champiñones");
+        Topping queso = new Topping("Queso", 3.99);
+        Topping champinones = new Topping("Champiñones", 6.80);
+        Topping pimiento = new Topping("Pimientos", 11.50);
 
-        Pizza pi = new Pizza("ZZZ", 000, Arrays.asList("Piña","Jamon","Queso"));
-        quesoTopping.agregar(pi);
-        champinonesTopping.agregar(pi);
-        System.out.println(pi.toString());
-        pi.preparacion();
+        Pizza pizza = new Pizza("Italiana");
+        pizza.agregarTopping(queso);
+        pizza.agregarTopping(champinones);
+        pizza.agregarTopping(pimiento);
 
-        PizzaItaliana pila = new PizzaItaliana("Italiana", 150, Arrays.asList("Albahaca","Queso","Tomate"), "Tomate", 10);
-        System.out.println(pila.toString());
-        pila.preparacion();
+        System.out.println("Ingredientes seleccionados:");
+        System.out.println(queso);
+        System.out.println(champinones);
+        System.out.println(pimiento);
+
+        System.out.println("\nDetalles de preparacion:");
+        pizza.preparar();
+        System.out.println(pizza);
 
     }
 }
